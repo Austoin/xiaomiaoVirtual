@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Temp files
+temps/
+*.tmp
+*.temp
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Config (local)
+config.json
+
+# Local packages and large runtime binaries
+deploy/*.zip
+NapCat.Shell.Windows.OneKey/
+
+# NapCat data
+napcat_data/
+
+# Windows
+nul
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Secrets
+.env
+*.pem
+*.key
+credentials.json
