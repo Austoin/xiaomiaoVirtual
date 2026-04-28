@@ -375,7 +375,7 @@ systemctl start xiaomiao-bot
 
 ### 四种角色模式
 
-1. **女朋友模式**（默认）
+1. **女朋友模式**
    - 函数：`girl_friend()`
    - 特点：温柔可爱、会撒娇、傲娇
 
@@ -389,25 +389,17 @@ systemctl start xiaomiao-bot
    - 特点：耐心可靠、慈爱
    - 触发：用户发送 `- 做我mm吧`
 
-4. **高级程序员模式**
+4. **高级程序员模式**（默认）
    - 函数：`senior_programmer()`
    - 特点：资深工程师风格，擅长架构设计、代码审查、性能优化、调试定位和测试设计
-   - 触发：在 `config.json` 的 `Others.persona_users.senior_programmer` 中添加 QQ 号
+   - 触发：默认启用，或用户发送 `- 程序员`
 
 ### 切换到高级程序员模式
 
-高级程序员模式不使用 `.ini` 文件，也不通过聊天命令切换。修改 `config.json`：
+高级程序员模式是默认人格。也可以通过发送 `- 程序员` 切换回来，或直接把 QQ 号写入 `runtime/programmers.ini`：
 
-```json
-{
-    "Others": {
-        "persona_users": {
-            "senior_programmer": [
-                "你的QQ号"
-            ]
-        }
-    }
-}
+```text
+你的QQ号
 ```
 
 保存后重启 `python main.py` 生效。若同一 QQ 同时存在于 `runtime/programmers.ini` 和 `runtime/sisters.ini` / `runtime/jhq.ini`，优先使用高级程序员模式。

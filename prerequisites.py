@@ -19,6 +19,16 @@ def update_role_lists(
     return sisters, jhq, programmers
 
 
+def select_role(user_id: str, sisters: list, jhq: list, programmers: list) -> str:
+    if user_id in programmers:
+        return "programmer"
+    if user_id in jhq:
+        return "mother"
+    if user_id in sisters:
+        return "sister"
+    return "programmer"
+
+
 class prerequisite:
     def __init__(self, bot_name: str, event_user: str, personas: dict = None):
         self.bot_name = bot_name

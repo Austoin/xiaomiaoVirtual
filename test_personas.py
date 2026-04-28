@@ -1,6 +1,6 @@
 import unittest
 
-from prerequisites import prerequisite, update_role_lists
+from prerequisites import plain_text_reply, prerequisite, select_role, update_role_lists
 
 
 class PersonaTests(unittest.TestCase):
@@ -43,6 +43,36 @@ class PersonaTests(unittest.TestCase):
         self.assertEqual(sisters, [])
         self.assertEqual(jhq, [])
         self.assertEqual(programmers, [])
+
+    def test_unknown_user_defaults_to_programmer_role(self):
+        role = select_role(
+            "10001",
+            sisters=[],
+            jhq=[],
+            programmers=[],
+        )
+
+        self.assertEqual(role, "programmer")
+
+    def test_plain_text_reply_removes_markdown_syntax(self):
+        markdown = """## 结论
+- 第一条
+```python
+print("hi")
+```
+**重点** 和 `inline_code`"""
+
+        text = plain_text_reply(markdown)
+
+        self.assertNotIn("##", text)
+        self.assertNotIn("```", text)
+        self.assertNotIn("**", text)
+        self.assertNotIn("`", text)
+        self.assertIn("结论", text)
+        self.assertIn("第一条", text)
+        self.assertIn('print("hi")', text)
+        self.assertIn("重点", text)
+        self.assertIn("inline_code", text)
 
 
 if __name__ == "__main__":

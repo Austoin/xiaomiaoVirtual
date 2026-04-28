@@ -41,7 +41,7 @@ from GoogleAI import genai, Context, Parts, Roles
 
 # from google.generativeai.types import FunctonDeclaration
 from SearchOnline import network_gpt as SearchOnline
-from prerequisites import prerequisite, update_role_lists
+from prerequisites import prerequisite, select_role, update_role_lists
 import Quote
 
 config = Configurator.cm.get_cfg()
@@ -169,12 +169,13 @@ def get_market_face_url(face_id: str) -> str:
 def select_persona_prompt(user_id: int, event_user: str) -> str:
     user_id_str = str(user_id)
     persona = prerequisite(bot_name, event_user, personas_config)
+    role = select_role(user_id_str, sisters, jhq, programmers)
 
-    if user_id_str in programmers:
+    if role == "programmer":
         return persona.senior_programmer()
-    if user_id_str in jhq:
+    if role == "mother":
         return persona.mother()
-    if user_id_str in sisters:
+    if role == "sister":
         return persona.sister()
     return persona.girl_friend()
 
